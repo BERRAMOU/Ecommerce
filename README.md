@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-# EcommerceTest
+# Ecommerce
 it's the first project in symfony its a repo of test 
 
 
