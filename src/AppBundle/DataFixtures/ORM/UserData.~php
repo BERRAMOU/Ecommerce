@@ -1,0 +1,89 @@
+<?php
+namespace Ecommerce\EcommerceBundle\DataFixtures\ORM;
+
+use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+//use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+//use Doctrine\Common\Persistence\ObjectManager;
+use AppBundle\Entity\User;
+
+class UserData extends AbstractFixture implements FixtureInterface, ContainerAwareInterface, OrderedFixtureInterface
+{
+
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
+
+    public function setContainer(ContainerInterface $container = null)
+    {
+
+        $this->container = $container;
+    }
+
+
+    public function load(ObjectManager $manager)
+    {
+
+        $user1 = new User();
+        $user1->setUsername('berramou');
+        $user1->setEmail('azedine.berramou@gmail.com');
+        ///Encodage du password
+        $encoder = $this->container->get('security.password_encoder');
+        $password = $encoder->encodePassword($user1, '1234567');
+        $user1->setPassword($password);
+        $user1->setEnabled('1');
+        $manager->persist($user1);
+
+        $user2 = new User();
+        $user2->setUsername('wrika');
+        $user2->setEmail('amin.wrika@gmail.com');
+        ///Encodage du password
+        $encoder = $this->container->get('security.password_encoder');
+        $password = $encoder->encodePassword($user2, '1234567');
+        $user2->setPassword($password);
+        $user2->setEnabled('1');
+        $manager->persist($user2);
+
+
+        $user3 = new User();
+        $user3->setUsername('admin');
+        $user3->setEmail('admin.contact@gmail.com');
+        ///Encodage du password
+        $encoder = $this->container->get('security.password_encoder');
+        $password = $encoder->encodePassword($user3, '1234567');
+        $user3->setPassword($password);
+        $user3->setEnabled('1');
+        $manager->persist($user3);
+
+        $user4 = new User();
+        $user4->setUsername('userClient');
+        $user4->setEmail('Client@gmail.com');
+        ///Encodage du password
+        $encoder = $this->container->get('security.password_encoder');
+        $password = $encoder->encodePassword($user4, '1234567');
+        $user4->setPassword($password);
+        $user4->setEnabled('1');
+        $manager->persist($user4);
+
+
+        $manager->flush();
+
+        $this->addReference('user1', $user1);
+        $this->addReference('user2', $user2);
+        $this->addReference('user3', $user3);
+        $this->addReference('user4', $user4);
+
+
+    }
+
+    public function getOrder()
+    {
+
+        return 5;
+    }
+}

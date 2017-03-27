@@ -1,0 +1,7 @@
+adminCommandes:
+    pattern:  /
+    defaults: { _controller: "EcommerceBundle:CommandeAdmin:commandes" }
+
+adminShowFacture:
+    pattern:  /facture/{id}
+    defaults: { _controller: "EcommerceBundle:CommandeAdmin:showFacture" }

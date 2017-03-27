@@ -1,0 +1,12 @@
+body {
+	padding-bottom: 40px;
+    padding-top: 60px;
+}
+
+.loading{
+    float: right;
+    width: 30px;
+    margin-right: 115px;
+    height: 30px;
+    background: url('../img/load.gif');
+}

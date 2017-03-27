@@ -1,0 +1,57 @@
+{% extends "::layout/layout.html.twig" %}
+{% block titre %} {% endblock %}
+{% block description %} Home page of Ecommerce Application  {% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+
+            <div class="span3">
+                {% include '::modulesUsed/navigation.html.twig' %}
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    {% include 'AppBundle:Default:modulesUsed/utilisateurConnect.html.twig' %}
+                {% else %}
+                    {% include 'AppBundle:Default:modulesUsed/utilisateur.html.twig' %}
+                {% endif %}
+                {% render(controller('EcommerceBundle:Panier:menu')) %}
+            </div>
+
+            <div class="span9">
+                {% if produits|length != 0 %}
+                    <ul class="thumbnails">
+                        {% for produit in  produits %}
+                            <li class="span3">
+                                <div class="thumbnail">
+                                    <img src="{{ produit.image.AssetPath | imagine_filter('prod_thumb') }}" alt="{{ produit.image.name }}" width="300"
+                                         height="200">
+                                    <div class="caption">
+                                        <h4>{{ produit.nom }}</h4>
+                                        <p>{{ produit.prix | tva(produit.tva.multiplicate) }}€</p>
+
+                                        <a class="btn btn-primary"
+                                           href="{{ path('presentation' ,{'id' : produit.id }) }}">Plus d'infos</a>
+                                        {% if panier[produit.id] is not defined %}
+                                            <a class="btn btn-success"
+                                               href="{{ path('ajouter' , {'id' : produit.id}) }}">Ajouter au panier</a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+
+                    <div class="navigation text-center">
+                        {{ knp_pagination_render(produits) }}
+                    </div>
+
+                {% else %}
+                    Acunn Produits
+                {% endif %}
+
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

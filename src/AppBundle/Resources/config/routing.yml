@@ -1,0 +1,7 @@
+routingUtilisateursAdmin:
+    resource: "@AppBundle/Resources/config/routing/routingUtilisateursAdmin.yml"
+    prefix: /admin/utilisateurs
+
+routingUtilisateurs:
+    resource: "@AppBundle/Resources/config/routing/routingUtilisateurs.yml"
+    prefix: /

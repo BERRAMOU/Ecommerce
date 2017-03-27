@@ -1,0 +1,13 @@
+villes:
+    pattern:  /villes/{cp}
+    defaults: { _controller: AppBundle:Utilisateurs:villes }
+    options:
+        expose: true
+facture:
+    pattern:  /profile/factures
+    defaults: { _controller: AppBundle:Utilisateurs:factures }
+
+facturePDF:
+    pattern:  /profile/factures/pdf/{id}
+    defaults: { _controller: AppBundle:Utilisateurs:facturePDF }
+

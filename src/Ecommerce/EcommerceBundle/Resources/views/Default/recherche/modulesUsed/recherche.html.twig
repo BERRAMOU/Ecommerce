@@ -1,0 +1,5 @@
+<form action="{{ path('rechercheProduits') }}" class="navbar-form form-search pull-right" method="post">
+    {{ form_widget(form.recherche) }}
+    <button type="submit" class="btn">Rechercher</button>
+    {{ form(form) }}
+</form>

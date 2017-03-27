@@ -1,0 +1,12 @@
+adminUtilisateurs:
+    pattern:  /
+    defaults: { _controller: AppBundle:UtilisateursAdmin:index }
+
+adminAdressesUtilisateurs:
+    pattern:  /{id}/adresses
+    defaults: { _controller: AppBundle:UtilisateursAdmin:utilisateur }
+
+adminFacturesUtilisateurs:
+    pattern:  /{id}/factures
+    defaults: { _controller: AppBundle:UtilisateursAdmin:utilisateur }
+
